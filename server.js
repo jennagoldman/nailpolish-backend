@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT;
 app.use(morgan('dev')); // http logging
 app.use(cors()); // enable CORS request
-
+app.use(express.static('public'));
 // API Routes
 
 app.get('/api/nailpolishes', async(req, res) => {

@@ -25,7 +25,7 @@ async function run() {
             price DECIMAL(65, 2) NOT NULL,
             url VARCHAR(256) NOT NULL,
             is_quickdry BOOLEAN NOT NULL,
-            brand VARCHAR(256) NOT NULL,
+            brand VARCHAR(256) NOT NULL
         );
         `);
 

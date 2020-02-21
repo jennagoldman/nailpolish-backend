@@ -43,7 +43,7 @@ module.exports = [
         id: 6,
         name: 'Fancy',
         price: 18.99,
-        url: 'public/fancy.jpg',
+        url: 'https://images-na.ssl-images-amazon.com/images/I/71o1xBp%2BZsL._SX425_.jpg',
         is_quickdry: false,
         brand: 'Butter',
     },

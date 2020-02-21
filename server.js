@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // Application Dependencies
 const express = require('express');
+const server = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const pg = require('pg');
@@ -28,7 +29,7 @@ app.get('/api/nailpolishes', async(req, res) => {
                 id,
                 name,
                 price,
-                image_url,
+                url,
                 is_quickdry,
                 brand
             FROM nailpolishes;
@@ -48,3 +49,5 @@ app.get('/api/nailpolishes', async(req, res) => {
 app.listen(PORT, () => {
     console.log('server running on PORT', PORT);
 });
+
+module.exports = { server: server };

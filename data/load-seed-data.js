@@ -18,10 +18,10 @@ async function run() {
             data.map(item => {
 
                 return client.query(`
-                    INSERT INTO nailpolishes (name, price, image_url, is_quickdry, brand)
-                    VALUES ($1, $2, $3, $4, $5, $6);
+                    INSERT INTO nailpolishes (name, price, url, is_quickdry, brand)
+                    VALUES ($1, $2, $3, $4, $5);
                 `,
-                [item.name, item.price, item.image_url, item.is_quickdry, item.brand]);
+                [item.name, item.price, item.url, item.is_quickdry, item.brand]);
                 // Don't forget to "return" the client.query promise!
                 
             })

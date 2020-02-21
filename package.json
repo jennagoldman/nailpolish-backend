@@ -2,10 +2,7 @@
   "name": "nailpolish-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "server.js",
   "scripts": {
     "lint": "eslint .",
     "test": "jest --detectOpenHandles",

@@ -70,8 +70,12 @@ app.post('/api/nailpolishes', async(req, res) => {
 app.get('/api/nailpolish/:nailpolishId', async(req, res) => {
     try {
         const result = await client.query(`
-            SELECT *
+            SELECT 
+                nailpolishes.*,
+                brands.name as brand
             FROM nailpolishes
+            JOIN brands
+            ON nailpolishes.brand_id = brands.id
             WHERE nailpolishes.id=$1`,
             
         [req.params.nailpolishId]

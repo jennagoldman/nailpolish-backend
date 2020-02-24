@@ -19,13 +19,18 @@ async function run() {
     
         // run a query to create tables
         await client.query(`
+        CREATE TABLE brands (
+            id SERIAL PRIMARY KEY NOT NULL,
+            name VARCHAR(256) NOT NULL
+        );
+
         CREATE TABLE nailpolishes (
             id SERIAL PRIMARY KEY NOT NULL,
             name VARCHAR(256) NOT NULL,
             price DECIMAL(65, 2) NOT NULL,
             url VARCHAR(256) NOT NULL,
             is_quickdry BOOLEAN NOT NULL,
-            brand VARCHAR(256) NOT NULL
+            brand_id INTEGER NOT NULL REFERENCES brands(id)
         );
         `);
 
@@ -39,5 +44,4 @@ async function run() {
         // success or failure, need to close the db connection
         client.end();
     }
-    
 }

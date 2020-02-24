@@ -3,6 +3,7 @@ const pg = require('pg');
 const Client = pg.Client;
 // import seed data:
 const data = require('./data.js');
+const brands = require('./brands.js');
 
 run();
 
@@ -13,15 +14,30 @@ async function run() {
         await client.connect();
     
         // "Promise all" does a parallel execution of async tasks
-        await Promise.all(
+        const savedBrands = await Promise.all(
+            brands.map(async brand => {
+                const result = await client.query(`
+                    INSERT INTO brands (name)
+                    VALUES ($1)
+                    RETURNING *;
+                `,
+                [brand]);
+
+                return result.rows[0];
+            })
+        );
             // map every item in the array data
-            data.map(item => {
+        await Promise.all(    
+            data.map(nailpolish => {
+                const brand = savedBrands.find(brand => {
+                    return brand.name === nailpolish.brand;
+                });
 
                 return client.query(`
-                    INSERT INTO nailpolishes (name, price, url, is_quickdry, brand)
+                    INSERT INTO nailpolishes (name, price, url, is_quickdry, brand_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-                [item.name, item.price, item.url, item.is_quickdry, item.brand]);
+                [nailpolish.name, nailpolish.price, nailpolish.url, nailpolish.is_quickdry, brand.id]);
                 // Don't forget to "return" the client.query promise!
                 
             })

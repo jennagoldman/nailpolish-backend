@@ -67,7 +67,7 @@ app.post('/api/nailpolishes', async(req, res) => {
     }
 });
 
-app.put('api/nailpolishes', async(req, res) => {
+app.put('/api/nailpolishes', async(req, res) => {
     try {
         const result = await client.query(`
         UPDATE nailpolishes

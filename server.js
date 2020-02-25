@@ -67,6 +67,28 @@ app.post('/api/nailpolishes', async(req, res) => {
     }
 });
 
+app.put('api/nailpolishes', async(req, res) => {
+    try {
+        const result = await client.query(`
+        UPDATE nailpolishes
+        SET name = '${req.body.name}',
+            price = '${req.body.price}',
+            brand_id = '${req.body.brandId}',
+            url = '${req.body.url}',
+            is_quickdry = '${req.body.isQuickdry}'
+        WHERE id = ${req.body.id};
+            `);
+
+        res.json(result.rows[0]);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 app.get('/api/nailpolish/:nailpolishId', async(req, res) => {
     try {
         const result = await client.query(`

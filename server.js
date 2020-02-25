@@ -132,6 +132,22 @@ app.get('/api/brands', async(req, res) => {
     }
 });
 
+app.delete('/api/nailpolish/:nailPolishId', async(req, res) => {
+    try {
+        const result = await client.query(`
+            DELETE from nailpolishes
+            WHERE id = ${req.params.id}
+            `);
+        res.json(result.rows);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log('server running on PORT', PORT);

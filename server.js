@@ -73,11 +73,12 @@ app.put('api/nailpolishes', async(req, res) => {
         UPDATE nailpolishes
         SET name = '${req.body.name}',
             price = '${req.body.price}',
-            brand_id = '${req.body.brandId}',
+            brand_id = '${req.body.brand_id}',
             url = '${req.body.url}',
-            is_quickdry = '${req.body.isQuickdry}'
+            is_quickdry = '${req.body.is_quickdry}'
         WHERE id = ${req.body.id};
-            `);
+            `,
+        );
 
         res.json(result.rows[0]);
     }

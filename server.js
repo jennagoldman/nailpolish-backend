@@ -136,7 +136,7 @@ app.delete('/api/nailpolish/:nailPolishId', async(req, res) => {
     try {
         const result = await client.query(`
             DELETE from nailpolishes
-            WHERE id = ${req.params.id}
+            WHERE id = ${req.params.nailPolishId}
             `);
         res.json(result.rows);
     }
